@@ -1,0 +1,24 @@
+{
+  "name": "crudeintel",
+  "version": "1.0.0",
+  "description": "AI-powered crude oil price tracking and prediction platform",
+  "private": true,
+  "scripts": {
+    "install:all": "npm install --prefix web && npm install --prefix api",
+    "dev": "concurrently \"npm run dev:api\" \"npm run dev:web\"",
+    "dev:web": "npm run dev --prefix web",
+    "dev:api": "npm run start:dev --prefix api",
+    "build": "npm run build:api && npm run build:web",
+    "build:web": "npm run build --prefix web",
+    "build:api": "npm run build --prefix api",
+    "start": "concurrently \"npm run start:api\" \"npm run start:web\"",
+    "start:web": "npm run start --prefix web",
+    "start:api": "npm run start:prod --prefix api"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

@@ -1,0 +1,65 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model PriceSnapshot {
+  id            Int      @id @default(autoincrement())
+  benchmark     String   // WTI | BRENT | OPEC | DUBAI | NATGAS
+  price         Float
+  currency      String   @default("USD")
+  unit          String   @default("barrel")
+  source        String   // EIA | ALPHAVANTAGE | YAHOO | MOCK
+  change        Float    @default(0)
+  changePercent Float    @default(0)
+  timestamp     DateTime @default(now())
+
+  @@index([benchmark, timestamp])
+}
+
+model ArbitrageOpportunity {
+  id            Int       @id @default(autoincrement())
+  buyBenchmark  String
+  sellBenchmark String
+  buyPrice      Float
+  sellPrice     Float
+  spread        Float
+  spreadPercent Float
+  isActive      Boolean   @default(true)
+  detectedAt    DateTime  @default(now())
+  closedAt      DateTime?
+
+  @@index([detectedAt])
+}
+
+model PricePrediction {
+  id            Int      @id @default(autoincrement())
+  benchmark     String
+  currentPrice  Float
+  predicted1d   Float
+  predicted7d   Float
+  predicted30d  Float
+  confidence    Float    // 0-100
+  reasoning     String
+  sentiment     String   // bullish | bearish | neutral
+  keyFactors    String[] // array of factors
+  createdAt     DateTime @default(now())
+
+  @@index([benchmark, createdAt])
+}
+
+model NewsArticle {
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String?
+  url         String   @unique
+  source      String
+  publishedAt DateTime
+  sentiment   String?  // bullish | bearish | neutral
+  impact      String?  // high | medium | low
+  fetchedAt   DateTime @default(now())
+}
