@@ -13,15 +13,26 @@ import {
   Mail,
   Globe,
   Zap,
-  Shield,
-  Clock,
   TrendingUp,
+  TrendingDown,
   Database,
   Server,
   Code2,
   Sparkles,
-  ExternalLink,
-  User,
+  Fuel,
+  Plane,
+  Home,
+  ShoppingCart,
+  Briefcase,
+  BarChart3,
+  Users,
+  GraduationCap,
+  HelpCircle,
+  Clock,
+  RefreshCw,
+  Wifi,
+  CheckCircle2,
+  ArrowRight,
 } from 'lucide-react';
 import Link from 'next/link';
 
@@ -49,80 +60,133 @@ const itemVariants = {
   },
 };
 
+const oilImpacts = [
+  { icon: Fuel, area: 'Gas Prices', description: 'A $10 increase in oil prices can add $0.25-0.30 per gallon to gasoline prices.' },
+  { icon: ShoppingCart, area: 'Food Costs', description: 'Farmers use diesel for tractors, trucks transport food using fuel. Higher oil = higher food prices.' },
+  { icon: Plane, area: 'Airline Tickets', description: 'Jet fuel is derived from oil. Airlines often raise ticket prices when oil costs increase.' },
+  { icon: Home, area: 'Heating Bills', description: 'Many homes use heating oil. Winter heating costs directly correlate with oil prices.' },
+  { icon: ShoppingCart, area: 'Product Prices', description: 'Plastics, cosmetics, medicines, and thousands of products are made from petroleum.' },
+  { icon: Briefcase, area: 'Job Market', description: 'Oil industry employs millions globally. Price changes affect employment in energy sectors.' },
+];
+
+const benchmarks = [
+  { name: 'WTI', fullName: 'West Texas Intermediate', region: 'North America', description: 'The primary US oil benchmark. Light, sweet crude ideal for gasoline production.' },
+  { name: 'Brent', fullName: 'Brent Crude', region: 'Europe/Global', description: 'The international benchmark used to price ~80% of global oil. Extracted from the North Sea.' },
+  { name: 'OPEC', fullName: 'OPEC Reference Basket', region: 'Middle East', description: 'Average price of oils from OPEC member countries (Saudi Arabia, UAE, etc.).' },
+  { name: 'Dubai', fullName: 'Dubai/Oman Crude', region: 'Asia', description: 'Primary benchmark for Middle Eastern oil exports to Asia.' },
+  { name: 'NATGAS', fullName: 'Henry Hub Natural Gas', region: 'Global', description: 'While not oil, natural gas prices often correlate with oil and affect energy markets.' },
+];
+
+const userTypes = [
+  {
+    icon: TrendingUp,
+    title: 'Traders & Investors',
+    points: [
+      'Real-time price monitoring across multiple benchmarks',
+      'AI-powered predictions for 1-day, 7-day, and 30-day horizons',
+      'Arbitrage opportunity detection with profit calculations',
+      'News sentiment analysis to gauge market mood',
+    ],
+  },
+  {
+    icon: Briefcase,
+    title: 'Business Owners',
+    points: [
+      'Track fuel costs that affect your supply chain',
+      'Plan purchases based on price predictions',
+      'Understand market trends affecting your industry',
+    ],
+  },
+  {
+    icon: GraduationCap,
+    title: 'Students & Researchers',
+    points: [
+      'Learn how oil markets work',
+      'Analyze historical price patterns',
+      'Understand AI applications in financial markets',
+    ],
+  },
+  {
+    icon: HelpCircle,
+    title: 'Curious Individuals',
+    points: [
+      'Understand why gas prices change',
+      'Learn about global energy markets',
+      'See AI in action with real market data',
+    ],
+  },
+];
+
 const features = [
   {
     icon: LineChart,
     title: 'Real-Time Price Tracking',
-    description: 'Live prices for WTI, Brent, OPEC Basket, Dubai Crude, and Natural Gas from multiple authoritative sources.',
+    description: 'Monitor live prices for 5 major crude oil benchmarks with automatic updates every 2 minutes.',
+    details: ['Current price per barrel in USD', '24-hour price change', '24-hour high and low', 'Visual trend indicators'],
     color: 'emerald',
+  },
+  {
+    icon: Brain,
+    title: 'AI-Powered Predictions',
+    description: 'Google Gemini AI analyzes market data for 1-day, 7-day, and 30-day price forecasts.',
+    details: ['Historical price patterns', 'News sentiment analysis', 'Cross-benchmark correlations', 'Confidence scoring (0-100%)'],
+    color: 'blue',
   },
   {
     icon: ArrowLeftRight,
     title: 'Arbitrage Detection',
-    description: 'Automatically identifies price discrepancies between benchmarks for potential trading opportunities.',
+    description: 'Automatically identifies profitable trading opportunities between benchmarks.',
+    details: ['Real-time spread calculations', 'Net profit estimates', 'High-spread alerts (>2%)', 'Visual spread matrix'],
     color: 'amber',
-  },
-  {
-    icon: Brain,
-    title: 'AI Price Predictions',
-    description: 'Google Gemini AI analyzes market data, historical trends, and news sentiment for 1-day, 7-day, and 30-day forecasts.',
-    color: 'blue',
-  },
-  {
-    icon: Newspaper,
-    title: 'News Sentiment Analysis',
-    description: 'Real-time news aggregation with AI-powered sentiment scoring to understand market direction.',
-    color: 'purple',
   },
   {
     icon: MessageSquare,
     title: 'AI Chat Assistant',
-    description: 'Ask questions about oil prices, get predictions, and receive market insights in natural language.',
+    description: 'Interactive chatbot for oil market questions powered by Google Gemini AI.',
+    details: ['Natural language processing', 'Real-time market data', 'Context-aware responses', 'Prediction requests'],
+    color: 'purple',
+  },
+  {
+    icon: Newspaper,
+    title: 'News Sentiment Analysis',
+    description: 'AI-analyzed news articles with bullish, bearish, or neutral sentiment indicators.',
+    details: ['Real-time news aggregation', 'Sentiment classification', 'Impact level scoring', 'Market relevance filtering'],
     color: 'pink',
   },
   {
-    icon: Zap,
-    title: 'WebSocket Updates',
-    description: 'Live data streaming for instant price updates and arbitrage alerts without page refreshes.',
-    color: 'yellow',
+    icon: Wifi,
+    title: 'Real-Time WebSocket Updates',
+    description: 'Live updates without page refresh using WebSocket technology.',
+    details: ['Instant price changes', 'New arbitrage alerts', 'Breaking news updates', 'Prediction refreshes'],
+    color: 'cyan',
   },
 ];
 
-const techStack = [
-  { name: 'Next.js 14', category: 'Frontend', icon: Globe },
-  { name: 'React 18', category: 'Frontend', icon: Code2 },
-  { name: 'TypeScript', category: 'Language', icon: Code2 },
-  { name: 'Tailwind CSS', category: 'Styling', icon: Code2 },
-  { name: 'Framer Motion', category: 'Animation', icon: Sparkles },
-  { name: 'NestJS', category: 'Backend', icon: Server },
-  { name: 'PostgreSQL', category: 'Database', icon: Database },
-  { name: 'Prisma', category: 'ORM', icon: Database },
-  { name: 'Socket.io', category: 'Real-time', icon: Zap },
-  { name: 'Google Gemini', category: 'AI', icon: Brain },
+const updateCycles = [
+  { interval: 'Every 2 min', action: 'Prices fetched from data sources', icon: RefreshCw },
+  { interval: 'Every 5 min', action: 'AI predictions regenerated', icon: Brain },
+  { interval: 'Every 30 min', action: 'News articles refreshed and analyzed', icon: Newspaper },
+  { interval: 'Real-time', action: 'Arbitrage calculations on price update', icon: Zap },
 ];
 
-const useCases = [
-  {
-    title: 'For Traders',
-    description: 'Monitor real-time prices across multiple benchmarks, identify arbitrage opportunities, and get AI-powered predictions to inform trading decisions.',
-    icon: TrendingUp,
-  },
-  {
-    title: 'For Business Owners',
-    description: 'Track oil prices that affect operational costs, understand market trends, and plan procurement strategies based on AI forecasts.',
-    icon: Shield,
-  },
-  {
-    title: 'For Students & Researchers',
-    description: 'Learn about oil markets, understand price dynamics, and explore how AI can be applied to financial analysis.',
-    icon: Brain,
-  },
-  {
-    title: 'For Curious Individuals',
-    description: 'Understand why gas prices change, learn about global oil benchmarks, and see how geopolitics affects energy prices.',
-    icon: Globe,
-  },
-];
+const techStack = {
+  frontend: [
+    { name: 'Next.js 14', purpose: 'React framework with App Router' },
+    { name: 'TypeScript', purpose: 'Type-safe JavaScript' },
+    { name: 'Tailwind CSS', purpose: 'Utility-first styling' },
+    { name: 'Framer Motion', purpose: 'Smooth animations' },
+    { name: 'Recharts', purpose: 'Data visualization' },
+    { name: 'TanStack Query', purpose: 'Data fetching & caching' },
+  ],
+  backend: [
+    { name: 'NestJS', purpose: 'Enterprise Node.js framework' },
+    { name: 'PostgreSQL', purpose: 'Relational database' },
+    { name: 'Prisma ORM', purpose: 'Database toolkit' },
+    { name: 'Socket.io', purpose: 'Real-time communication' },
+    { name: 'Google Gemini', purpose: 'AI predictions & chat' },
+    { name: 'node-cron', purpose: 'Scheduled tasks' },
+  ],
+};
 
 export default function AboutPage() {
   return (
@@ -166,36 +230,181 @@ export default function AboutPage() {
               Why Crude Oil Matters
             </CardTitle>
           </CardHeader>
-          <CardContent className="space-y-4 text-sm sm:text-base text-zinc-400">
-            <p>
-              Crude oil is the world&apos;s most important commodity, powering transportation, manufacturing, and heating across the globe.
-              Its price affects everything from the cost of your morning commute to the price of everyday products.
-            </p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mt-4">
-              <div className="p-3 sm:p-4 rounded-xl bg-zinc-800/50 border border-zinc-700/50">
+          <CardContent className="space-y-6">
+            {/* What is Crude Oil */}
+            <div>
+              <h3 className="font-semibold text-white mb-2">What is Crude Oil?</h3>
+              <p className="text-sm sm:text-base text-zinc-400">
+                Crude oil is a naturally occurring, unrefined petroleum product composed of hydrocarbon deposits and other organic materials.
+                It&apos;s often called &quot;black gold&quot; because of its immense value to the global economy.
+              </p>
+            </div>
+
+            {/* Stats */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
+              <div className="p-3 sm:p-4 rounded-xl bg-zinc-800/50 border border-zinc-700/50 text-center">
                 <p className="text-xl sm:text-2xl font-bold text-white">$85-95</p>
-                <p className="text-xs sm:text-sm text-zinc-500">Typical barrel price (USD)</p>
+                <p className="text-[10px] sm:text-xs text-zinc-500">Typical barrel price (USD)</p>
               </div>
-              <div className="p-3 sm:p-4 rounded-xl bg-zinc-800/50 border border-zinc-700/50">
+              <div className="p-3 sm:p-4 rounded-xl bg-zinc-800/50 border border-zinc-700/50 text-center">
                 <p className="text-xl sm:text-2xl font-bold text-white">100M+</p>
-                <p className="text-xs sm:text-sm text-zinc-500">Barrels consumed daily</p>
+                <p className="text-[10px] sm:text-xs text-zinc-500">Barrels consumed daily</p>
               </div>
-              <div className="p-3 sm:p-4 rounded-xl bg-zinc-800/50 border border-zinc-700/50">
+              <div className="p-3 sm:p-4 rounded-xl bg-zinc-800/50 border border-zinc-700/50 text-center">
                 <p className="text-xl sm:text-2xl font-bold text-white">4%</p>
-                <p className="text-xs sm:text-sm text-zinc-500">Of global GDP</p>
+                <p className="text-[10px] sm:text-xs text-zinc-500">Of global GDP</p>
               </div>
-              <div className="p-3 sm:p-4 rounded-xl bg-zinc-800/50 border border-zinc-700/50">
+              <div className="p-3 sm:p-4 rounded-xl bg-zinc-800/50 border border-zinc-700/50 text-center">
                 <p className="text-xl sm:text-2xl font-bold text-white">160+</p>
-                <p className="text-xs sm:text-sm text-zinc-500">Countries affected</p>
+                <p className="text-[10px] sm:text-xs text-zinc-500">Countries affected</p>
+              </div>
+            </div>
+
+            {/* How it affects you */}
+            <div>
+              <h3 className="font-semibold text-white mb-3">How Oil Prices Affect Your Daily Life</h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                {oilImpacts.map((impact, idx) => {
+                  const Icon = impact.icon;
+                  return (
+                    <div key={idx} className="flex items-start gap-3 p-3 rounded-lg bg-zinc-800/30 border border-zinc-700/30">
+                      <div className="p-2 rounded-lg bg-emerald-500/10 flex-shrink-0">
+                        <Icon className="h-4 w-4 text-emerald-500" />
+                      </div>
+                      <div>
+                        <p className="text-sm font-medium text-white">{impact.area}</p>
+                        <p className="text-xs text-zinc-500">{impact.description}</p>
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
             </div>
           </CardContent>
         </Card>
       </motion.div>
 
+      {/* Key Benchmarks */}
+      <motion.div variants={itemVariants}>
+        <Card className="bg-gradient-to-b from-zinc-900 to-zinc-950 border-zinc-800/50">
+          <CardHeader className="pb-3 sm:pb-6">
+            <CardTitle className="text-lg sm:text-xl flex items-center gap-2">
+              <BarChart3 className="h-5 w-5 text-emerald-500" />
+              Key Oil Benchmarks Explained
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-3">
+              {benchmarks.map((benchmark, idx) => (
+                <motion.div
+                  key={idx}
+                  className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 p-3 sm:p-4 rounded-xl bg-zinc-800/50 border border-zinc-700/50"
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: idx * 0.1 }}
+                >
+                  <div className="flex items-center gap-3">
+                    <span className="px-2 py-1 rounded bg-emerald-500/20 text-emerald-400 text-sm font-bold min-w-[60px] text-center">
+                      {benchmark.name}
+                    </span>
+                    <div className="sm:hidden">
+                      <Badge className="bg-zinc-700/50 text-zinc-400 text-[10px]">{benchmark.region}</Badge>
+                    </div>
+                  </div>
+                  <div className="flex-1">
+                    <div className="flex items-center gap-2">
+                      <p className="font-medium text-sm text-white">{benchmark.fullName}</p>
+                      <Badge className="hidden sm:inline-flex bg-zinc-700/50 text-zinc-400 text-[10px]">{benchmark.region}</Badge>
+                    </div>
+                    <p className="text-xs text-zinc-500 mt-0.5">{benchmark.description}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+      </motion.div>
+
+      {/* What is Arbitrage */}
+      <motion.div variants={itemVariants}>
+        <Card className="bg-gradient-to-br from-amber-950/20 to-zinc-950 border-amber-800/30">
+          <CardHeader className="pb-3 sm:pb-6">
+            <CardTitle className="text-lg sm:text-xl flex items-center gap-2">
+              <ArrowLeftRight className="h-5 w-5 text-amber-500" />
+              What is Arbitrage?
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <p className="text-sm sm:text-base text-zinc-400">
+              Arbitrage is the practice of taking advantage of price differences between markets. In oil trading:
+            </p>
+            <div className="p-4 rounded-xl bg-zinc-800/50 border border-zinc-700/50">
+              <p className="text-sm text-zinc-300 mb-2"><span className="text-amber-400 font-semibold">Example:</span></p>
+              <p className="text-sm text-zinc-400">
+                If WTI is <span className="text-emerald-400">$90/barrel</span> and Brent is <span className="text-emerald-400">$95/barrel</span>,
+                a trader could theoretically buy WTI and sell Brent, profiting from the <span className="text-amber-400 font-semibold">$5 spread</span> (minus transaction costs).
+              </p>
+            </div>
+            <div className="flex flex-col sm:flex-row gap-3">
+              <div className="flex-1 p-3 rounded-lg bg-zinc-800/30 border border-zinc-700/30">
+                <p className="text-xs font-medium text-amber-400 mb-1">Why It Matters</p>
+                <p className="text-xs text-zinc-500">Price differences indicate market inefficiencies and can signal upcoming price movements.</p>
+              </div>
+              <div className="flex-1 p-3 rounded-lg bg-zinc-800/30 border border-zinc-700/30">
+                <p className="text-xs font-medium text-emerald-400 mb-1">CrudeIntel&apos;s Role</p>
+                <p className="text-xs text-zinc-500">We automatically detect these opportunities and calculate potential profits, saving hours of manual analysis.</p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      </motion.div>
+
+      {/* Who Is This For */}
+      <motion.div variants={itemVariants}>
+        <h2 className="text-xl sm:text-2xl font-bold text-white mb-4 sm:mb-6 flex items-center gap-2">
+          <Users className="h-5 w-5 sm:h-6 sm:w-6 text-emerald-500" />
+          Who Is This For?
+        </h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+          {userTypes.map((user, idx) => {
+            const Icon = user.icon;
+            return (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: idx * 0.1 }}
+              >
+                <Card className="h-full bg-gradient-to-b from-zinc-900 to-zinc-950 border-zinc-800/50">
+                  <CardContent className="pt-4 sm:pt-6">
+                    <div className="flex items-center gap-3 mb-3">
+                      <div className="p-2 sm:p-2.5 rounded-lg bg-emerald-500/10">
+                        <Icon className="h-4 w-4 sm:h-5 sm:w-5 text-emerald-500" />
+                      </div>
+                      <h3 className="font-semibold text-sm sm:text-base text-white">{user.title}</h3>
+                    </div>
+                    <ul className="space-y-1.5">
+                      {user.points.map((point, i) => (
+                        <li key={i} className="flex items-start gap-2 text-xs sm:text-sm text-zinc-400">
+                          <CheckCircle2 className="h-3.5 w-3.5 text-emerald-500 mt-0.5 flex-shrink-0" />
+                          {point}
+                        </li>
+                      ))}
+                    </ul>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            );
+          })}
+        </div>
+      </motion.div>
+
       {/* Features */}
       <motion.div variants={itemVariants}>
-        <h2 className="text-xl sm:text-2xl font-bold text-white mb-4 sm:mb-6">Platform Features</h2>
+        <h2 className="text-xl sm:text-2xl font-bold text-white mb-4 sm:mb-6 flex items-center gap-2">
+          <Sparkles className="h-5 w-5 sm:h-6 sm:w-6 text-emerald-500" />
+          Platform Features
+        </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
           {features.map((feature, index) => {
             const Icon = feature.icon;
@@ -209,11 +418,19 @@ export default function AboutPage() {
               >
                 <Card className="h-full bg-gradient-to-b from-zinc-900 to-zinc-950 border-zinc-800/50 hover:border-emerald-600/50 transition-colors">
                   <CardContent className="pt-4 sm:pt-6">
-                    <div className={`inline-flex p-2.5 sm:p-3 rounded-xl bg-${feature.color}-500/10 mb-3 sm:mb-4`}>
-                      <Icon className={`h-5 w-5 sm:h-6 sm:w-6 text-${feature.color}-500`} />
+                    <div className="inline-flex p-2.5 sm:p-3 rounded-xl bg-emerald-500/10 mb-3 sm:mb-4">
+                      <Icon className="h-5 w-5 sm:h-6 sm:w-6 text-emerald-500" />
                     </div>
                     <h3 className="font-semibold text-sm sm:text-base text-white mb-1.5 sm:mb-2">{feature.title}</h3>
-                    <p className="text-xs sm:text-sm text-zinc-400">{feature.description}</p>
+                    <p className="text-xs sm:text-sm text-zinc-400 mb-3">{feature.description}</p>
+                    <ul className="space-y-1">
+                      {feature.details.map((detail, i) => (
+                        <li key={i} className="flex items-center gap-1.5 text-[10px] sm:text-xs text-zinc-500">
+                          <ArrowRight className="h-2.5 w-2.5 text-emerald-500/50" />
+                          {detail}
+                        </li>
+                      ))}
+                    </ul>
                   </CardContent>
                 </Card>
               </motion.div>
@@ -222,36 +439,83 @@ export default function AboutPage() {
         </div>
       </motion.div>
 
-      {/* Use Cases */}
+      {/* How It Works */}
       <motion.div variants={itemVariants}>
-        <h2 className="text-xl sm:text-2xl font-bold text-white mb-4 sm:mb-6">Who Is This For?</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-          {useCases.map((useCase, index) => {
-            const Icon = useCase.icon;
-            return (
-              <motion.div
-                key={useCase.title}
-                initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: index * 0.1 }}
-              >
-                <Card className="h-full bg-gradient-to-b from-zinc-900 to-zinc-950 border-zinc-800/50">
-                  <CardContent className="pt-4 sm:pt-6">
-                    <div className="flex items-start gap-3 sm:gap-4">
-                      <div className="p-2 sm:p-2.5 rounded-lg bg-emerald-500/10 flex-shrink-0">
-                        <Icon className="h-4 w-4 sm:h-5 sm:w-5 text-emerald-500" />
-                      </div>
-                      <div>
-                        <h3 className="font-semibold text-sm sm:text-base text-white mb-1">{useCase.title}</h3>
-                        <p className="text-xs sm:text-sm text-zinc-400">{useCase.description}</p>
-                      </div>
+        <Card className="bg-gradient-to-b from-zinc-900 to-zinc-950 border-zinc-800/50">
+          <CardHeader className="pb-3 sm:pb-6">
+            <CardTitle className="text-lg sm:text-xl flex items-center gap-2">
+              <Zap className="h-5 w-5 text-emerald-500" />
+              How It Works
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-6">
+            {/* Data Flow */}
+            <div>
+              <h3 className="font-semibold text-white mb-3">Data Flow</h3>
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 p-4 rounded-xl bg-zinc-800/30 border border-zinc-700/30">
+                <div className="text-center p-3 rounded-lg bg-blue-500/10 border border-blue-500/20">
+                  <Database className="h-6 w-6 text-blue-400 mx-auto mb-1" />
+                  <p className="text-xs text-blue-400 font-medium">Data Sources</p>
+                  <p className="text-[10px] text-zinc-500">EIA, Yahoo, Alpha Vantage</p>
+                </div>
+                <ArrowRight className="h-4 w-4 text-zinc-600 rotate-90 sm:rotate-0" />
+                <div className="text-center p-3 rounded-lg bg-emerald-500/10 border border-emerald-500/20">
+                  <Server className="h-6 w-6 text-emerald-400 mx-auto mb-1" />
+                  <p className="text-xs text-emerald-400 font-medium">NestJS Backend</p>
+                  <p className="text-[10px] text-zinc-500">Processing & AI Analysis</p>
+                </div>
+                <ArrowRight className="h-4 w-4 text-zinc-600 rotate-90 sm:rotate-0" />
+                <div className="text-center p-3 rounded-lg bg-purple-500/10 border border-purple-500/20">
+                  <Globe className="h-6 w-6 text-purple-400 mx-auto mb-1" />
+                  <p className="text-xs text-purple-400 font-medium">Next.js Frontend</p>
+                  <p className="text-[10px] text-zinc-500">Visualization & Interaction</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Update Cycle */}
+            <div>
+              <h3 className="font-semibold text-white mb-3">Update Cycle</h3>
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                {updateCycles.map((cycle, idx) => {
+                  const Icon = cycle.icon;
+                  return (
+                    <div key={idx} className="p-3 rounded-lg bg-zinc-800/50 border border-zinc-700/50 text-center">
+                      <Icon className="h-5 w-5 text-emerald-500 mx-auto mb-2" />
+                      <p className="text-xs font-semibold text-emerald-400">{cycle.interval}</p>
+                      <p className="text-[10px] text-zinc-500 mt-1">{cycle.action}</p>
                     </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            );
-          })}
-        </div>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* AI Processing */}
+            <div>
+              <h3 className="font-semibold text-white mb-3">AI Processing (Google Gemini)</h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div className="p-4 rounded-lg bg-blue-500/5 border border-blue-500/20">
+                  <p className="text-xs font-semibold text-blue-400 mb-2">Inputs</p>
+                  <ul className="space-y-1 text-xs text-zinc-400">
+                    <li>• Current prices for all benchmarks</li>
+                    <li>• 30-day price history</li>
+                    <li>• Recent news headlines with sentiment</li>
+                    <li>• Cross-benchmark correlations</li>
+                  </ul>
+                </div>
+                <div className="p-4 rounded-lg bg-emerald-500/5 border border-emerald-500/20">
+                  <p className="text-xs font-semibold text-emerald-400 mb-2">Outputs</p>
+                  <ul className="space-y-1 text-xs text-zinc-400">
+                    <li>• Price predictions (1d, 7d, 30d)</li>
+                    <li>• Confidence scores</li>
+                    <li>• Reasoning explanations</li>
+                    <li>• Sentiment classification</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
       </motion.div>
 
       {/* Tech Stack */}
@@ -264,51 +528,32 @@ export default function AboutPage() {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="flex flex-wrap gap-2 sm:gap-3">
-              {techStack.map((tech, index) => (
-                <motion.div
-                  key={tech.name}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: index * 0.05 }}
-                  whileHover={{ scale: 1.05 }}
-                  className="flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-1.5 sm:py-2 rounded-lg bg-zinc-800/50 border border-zinc-700/50"
-                >
-                  <tech.icon className="h-3 w-3 sm:h-4 sm:w-4 text-emerald-500" />
-                  <span className="text-xs sm:text-sm text-zinc-300">{tech.name}</span>
-                </motion.div>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
-      </motion.div>
-
-      {/* Data Sources */}
-      <motion.div variants={itemVariants}>
-        <Card className="bg-gradient-to-b from-zinc-900 to-zinc-950 border-zinc-800/50">
-          <CardHeader className="pb-3 sm:pb-6">
-            <CardTitle className="text-lg sm:text-xl flex items-center gap-2">
-              <Database className="h-5 w-5 text-emerald-500" />
-              Data Sources
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
-              <div className="p-3 sm:p-4 rounded-xl bg-zinc-800/50 border border-zinc-700/50">
-                <p className="font-medium text-sm sm:text-base text-white mb-1">EIA (Official)</p>
-                <p className="text-xs sm:text-sm text-zinc-500">U.S. Energy Information Administration</p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+              <div>
+                <h3 className="text-sm font-semibold text-emerald-400 mb-3 flex items-center gap-2">
+                  <Globe className="h-4 w-4" /> Frontend
+                </h3>
+                <div className="space-y-2">
+                  {techStack.frontend.map((tech, idx) => (
+                    <div key={idx} className="flex items-center justify-between p-2 rounded-lg bg-zinc-800/30">
+                      <span className="text-sm text-white">{tech.name}</span>
+                      <span className="text-xs text-zinc-500">{tech.purpose}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
-              <div className="p-3 sm:p-4 rounded-xl bg-zinc-800/50 border border-zinc-700/50">
-                <p className="font-medium text-sm sm:text-base text-white mb-1">Alpha Vantage</p>
-                <p className="text-xs sm:text-sm text-zinc-500">Real-time market data API</p>
-              </div>
-              <div className="p-3 sm:p-4 rounded-xl bg-zinc-800/50 border border-zinc-700/50">
-                <p className="font-medium text-sm sm:text-base text-white mb-1">Yahoo Finance</p>
-                <p className="text-xs sm:text-sm text-zinc-500">Financial data provider</p>
-              </div>
-              <div className="p-3 sm:p-4 rounded-xl bg-zinc-800/50 border border-zinc-700/50">
-                <p className="font-medium text-sm sm:text-base text-white mb-1">NewsAPI</p>
-                <p className="text-xs sm:text-sm text-zinc-500">News aggregation service</p>
+              <div>
+                <h3 className="text-sm font-semibold text-blue-400 mb-3 flex items-center gap-2">
+                  <Server className="h-4 w-4" /> Backend
+                </h3>
+                <div className="space-y-2">
+                  {techStack.backend.map((tech, idx) => (
+                    <div key={idx} className="flex items-center justify-between p-2 rounded-lg bg-zinc-800/30">
+                      <span className="text-sm text-white">{tech.name}</span>
+                      <span className="text-xs text-zinc-500">{tech.purpose}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </CardContent>
@@ -336,13 +581,8 @@ export default function AboutPage() {
                 <h3 className="text-xl sm:text-2xl font-bold text-white mb-2">Keshav Agarwal</h3>
                 <p className="text-sm sm:text-base text-zinc-400 mb-4 max-w-xl">
                   A passionate full-stack developer with expertise in building modern web applications.
-                  Specializing in React, Next.js, Node.js, and AI integration, I love creating tools
-                  that make complex data accessible and actionable for everyone.
-                </p>
-                <p className="text-sm sm:text-base text-zinc-400 mb-4 max-w-xl">
-                  CrudeIntel was built to demonstrate how AI can transform financial data analysis,
-                  making sophisticated market insights available to anyone interested in understanding
-                  the oil market.
+                  Specializing in React, Next.js, Node.js, and AI integration. CrudeIntel was built to demonstrate
+                  how AI can transform financial data analysis, making sophisticated market insights accessible to everyone.
                 </p>
                 <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2 sm:gap-3">
                   <Link
