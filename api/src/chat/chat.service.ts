@@ -15,8 +15,10 @@ export class ChatService {
     private pricesService: PricesService,
     private newsService: NewsService,
   ) {
-    this.genAI = new GoogleGenerativeAI(this.config.get('GEMINI_API_KEY') || '');
-    this.model = this.genAI.getGenerativeModel({ model: 'gemini-pro' });
+    const apiKey = this.config.get('GEMINI_API_KEY') || '';
+    this.logger.log(`Gemini API Key configured: ${apiKey ? 'Yes' : 'No'}`);
+    this.genAI = new GoogleGenerativeAI(apiKey);
+    this.model = this.genAI.getGenerativeModel({ model: 'gemini-2.5-flash' });
   }
 
   async chat(message: string): Promise<string> {

@@ -16,7 +16,7 @@ export class NewsService {
 
   constructor(private config: ConfigService) {
     this.genAI = new GoogleGenerativeAI(this.config.get('GEMINI_API_KEY') || '');
-    this.model = this.genAI.getGenerativeModel({ model: 'gemini-pro' });
+    this.model = this.genAI.getGenerativeModel({ model: 'gemini-2.5-flash' });
   }
 
   async fetchNews(): Promise<NewsItem[]> {

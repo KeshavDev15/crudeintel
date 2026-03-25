@@ -26,7 +26,7 @@ export class PredictionService {
     private newsService: NewsService,
   ) {
     this.genAI = new GoogleGenerativeAI(this.config.get('GEMINI_API_KEY') || '');
-    this.model = this.genAI.getGenerativeModel({ model: 'gemini-pro' });
+    this.model = this.genAI.getGenerativeModel({ model: 'gemini-2.5-flash' });
   }
 
   async getPrediction(benchmark: string): Promise<PricePrediction> {
