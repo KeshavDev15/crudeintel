@@ -1,0 +1,450 @@
+'use client';
+
+import { motion } from 'framer-motion';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import {
+  Droplets,
+  Brain,
+  LineChart,
+  ArrowLeftRight,
+  Newspaper,
+  MessageSquare,
+  Github,
+  Linkedin,
+  Mail,
+  Globe,
+  Zap,
+  Shield,
+  Clock,
+  TrendingUp,
+  Database,
+  Server,
+  Code2,
+  Sparkles,
+} from 'lucide-react';
+import Link from 'next/link';
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.2,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      type: 'spring',
+      stiffness: 100,
+      damping: 15,
+    },
+  },
+};
+
+const features = [
+  {
+    icon: LineChart,
+    title: 'Real-Time Price Tracking',
+    description: 'Live prices for WTI, Brent, OPEC Basket, Dubai Crude, and Natural Gas from multiple authoritative sources.',
+    color: 'emerald',
+  },
+  {
+    icon: ArrowLeftRight,
+    title: 'Arbitrage Detection',
+    description: 'Automatically identifies price discrepancies between benchmarks for potential trading opportunities.',
+    color: 'amber',
+  },
+  {
+    icon: Brain,
+    title: 'AI Price Predictions',
+    description: 'Google Gemini AI analyzes market data, historical trends, and news sentiment for 1-day, 7-day, and 30-day forecasts.',
+    color: 'blue',
+  },
+  {
+    icon: Newspaper,
+    title: 'News Sentiment Analysis',
+    description: 'Real-time news aggregation with AI-powered sentiment scoring to understand market direction.',
+    color: 'purple',
+  },
+  {
+    icon: MessageSquare,
+    title: 'AI Chat Assistant',
+    description: 'Ask questions about oil prices, get predictions, and receive market insights in natural language.',
+    color: 'pink',
+  },
+  {
+    icon: Zap,
+    title: 'WebSocket Updates',
+    description: 'Live data streaming for instant price updates and arbitrage alerts without page refreshes.',
+    color: 'yellow',
+  },
+];
+
+const techStack = [
+  { name: 'Next.js 14', category: 'Frontend', icon: Globe },
+  { name: 'React 18', category: 'Frontend', icon: Code2 },
+  { name: 'TypeScript', category: 'Language', icon: Code2 },
+  { name: 'Tailwind CSS', category: 'Styling', icon: Code2 },
+  { name: 'Framer Motion', category: 'Animation', icon: Sparkles },
+  { name: 'NestJS', category: 'Backend', icon: Server },
+  { name: 'PostgreSQL', category: 'Database', icon: Database },
+  { name: 'Prisma', category: 'ORM', icon: Database },
+  { name: 'Socket.io', category: 'Real-time', icon: Zap },
+  { name: 'Google Gemini', category: 'AI', icon: Brain },
+];
+
+const useCases = [
+  {
+    title: 'For Traders',
+    description: 'Monitor real-time prices across multiple benchmarks, identify arbitrage opportunities, and get AI-powered predictions to inform trading decisions.',
+    icon: TrendingUp,
+  },
+  {
+    title: 'For Business Owners',
+    description: 'Track oil prices that affect operational costs, understand market trends, and plan procurement strategies based on AI forecasts.',
+    icon: Shield,
+  },
+  {
+    title: 'For Students & Researchers',
+    description: 'Learn about oil markets, understand price dynamics, and explore how AI can be applied to financial analysis.',
+    icon: Brain,
+  },
+  {
+    title: 'For Curious Individuals',
+    description: 'Understand why gas prices change, learn about global oil benchmarks, and see how geopolitics affects energy prices.',
+    icon: Globe,
+  },
+];
+
+export default function AboutPage() {
+  return (
+    <motion.div
+      className="space-y-6 sm:space-y-8 pb-8"
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+    >
+      {/* Hero Section */}
+      <motion.div
+        className="text-center py-8 sm:py-12"
+        variants={itemVariants}
+      >
+        <motion.div
+          className="inline-flex items-center justify-center h-16 w-16 sm:h-20 sm:w-20 rounded-2xl bg-gradient-to-br from-emerald-400 via-emerald-500 to-emerald-700 mb-4 sm:mb-6 shadow-2xl shadow-emerald-500/30"
+          whileHover={{ scale: 1.1, rotate: 5 }}
+          transition={{ type: 'spring', stiffness: 300 }}
+        >
+          <Droplets className="h-8 w-8 sm:h-10 sm:w-10 text-white" />
+        </motion.div>
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4 bg-gradient-to-r from-white via-zinc-200 to-zinc-400 bg-clip-text text-transparent">
+          CrudeIntel
+        </h1>
+        <p className="text-base sm:text-lg md:text-xl text-zinc-400 max-w-2xl mx-auto px-4">
+          AI-Powered Crude Oil Price Intelligence Platform
+        </p>
+        <div className="flex flex-wrap items-center justify-center gap-2 mt-4 sm:mt-6">
+          <Badge variant="bullish" className="text-xs sm:text-sm">Real-Time Data</Badge>
+          <Badge className="bg-blue-500/20 text-blue-400 border-blue-500/30 text-xs sm:text-sm">AI Predictions</Badge>
+          <Badge className="bg-purple-500/20 text-purple-400 border-purple-500/30 text-xs sm:text-sm">Sentiment Analysis</Badge>
+        </div>
+      </motion.div>
+
+      {/* Why Crude Oil Matters */}
+      <motion.div variants={itemVariants}>
+        <Card className="bg-gradient-to-b from-zinc-900 to-zinc-950 border-zinc-800/50">
+          <CardHeader className="pb-3 sm:pb-6">
+            <CardTitle className="text-lg sm:text-xl flex items-center gap-2">
+              <Droplets className="h-5 w-5 text-emerald-500" />
+              Why Crude Oil Matters
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4 text-sm sm:text-base text-zinc-400">
+            <p>
+              Crude oil is the world&apos;s most important commodity, powering transportation, manufacturing, and heating across the globe.
+              Its price affects everything from the cost of your morning commute to the price of everyday products.
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mt-4">
+              <div className="p-3 sm:p-4 rounded-xl bg-zinc-800/50 border border-zinc-700/50">
+                <p className="text-xl sm:text-2xl font-bold text-white">$85-95</p>
+                <p className="text-xs sm:text-sm text-zinc-500">Typical barrel price (USD)</p>
+              </div>
+              <div className="p-3 sm:p-4 rounded-xl bg-zinc-800/50 border border-zinc-700/50">
+                <p className="text-xl sm:text-2xl font-bold text-white">100M+</p>
+                <p className="text-xs sm:text-sm text-zinc-500">Barrels consumed daily</p>
+              </div>
+              <div className="p-3 sm:p-4 rounded-xl bg-zinc-800/50 border border-zinc-700/50">
+                <p className="text-xl sm:text-2xl font-bold text-white">4%</p>
+                <p className="text-xs sm:text-sm text-zinc-500">Of global GDP</p>
+              </div>
+              <div className="p-3 sm:p-4 rounded-xl bg-zinc-800/50 border border-zinc-700/50">
+                <p className="text-xl sm:text-2xl font-bold text-white">160+</p>
+                <p className="text-xs sm:text-sm text-zinc-500">Countries affected</p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      </motion.div>
+
+      {/* Features */}
+      <motion.div variants={itemVariants}>
+        <h2 className="text-xl sm:text-2xl font-bold text-white mb-4 sm:mb-6">Platform Features</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
+          {features.map((feature, index) => {
+            const Icon = feature.icon;
+            return (
+              <motion.div
+                key={feature.title}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                whileHover={{ scale: 1.02, y: -5 }}
+              >
+                <Card className="h-full bg-gradient-to-b from-zinc-900 to-zinc-950 border-zinc-800/50 hover:border-emerald-600/50 transition-colors">
+                  <CardContent className="pt-4 sm:pt-6">
+                    <div className={`inline-flex p-2.5 sm:p-3 rounded-xl bg-${feature.color}-500/10 mb-3 sm:mb-4`}>
+                      <Icon className={`h-5 w-5 sm:h-6 sm:w-6 text-${feature.color}-500`} />
+                    </div>
+                    <h3 className="font-semibold text-sm sm:text-base text-white mb-1.5 sm:mb-2">{feature.title}</h3>
+                    <p className="text-xs sm:text-sm text-zinc-400">{feature.description}</p>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            );
+          })}
+        </div>
+      </motion.div>
+
+      {/* Use Cases */}
+      <motion.div variants={itemVariants}>
+        <h2 className="text-xl sm:text-2xl font-bold text-white mb-4 sm:mb-6">Who Is This For?</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+          {useCases.map((useCase, index) => {
+            const Icon = useCase.icon;
+            return (
+              <motion.div
+                key={useCase.title}
+                initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: index * 0.1 }}
+              >
+                <Card className="h-full bg-gradient-to-b from-zinc-900 to-zinc-950 border-zinc-800/50">
+                  <CardContent className="pt-4 sm:pt-6">
+                    <div className="flex items-start gap-3 sm:gap-4">
+                      <div className="p-2 sm:p-2.5 rounded-lg bg-emerald-500/10 flex-shrink-0">
+                        <Icon className="h-4 w-4 sm:h-5 sm:w-5 text-emerald-500" />
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-sm sm:text-base text-white mb-1">{useCase.title}</h3>
+                        <p className="text-xs sm:text-sm text-zinc-400">{useCase.description}</p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            );
+          })}
+        </div>
+      </motion.div>
+
+      {/* Tech Stack */}
+      <motion.div variants={itemVariants}>
+        <Card className="bg-gradient-to-b from-zinc-900 to-zinc-950 border-zinc-800/50">
+          <CardHeader className="pb-3 sm:pb-6">
+            <CardTitle className="text-lg sm:text-xl flex items-center gap-2">
+              <Code2 className="h-5 w-5 text-emerald-500" />
+              Technology Stack
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="flex flex-wrap gap-2 sm:gap-3">
+              {techStack.map((tech, index) => (
+                <motion.div
+                  key={tech.name}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: index * 0.05 }}
+                  whileHover={{ scale: 1.05 }}
+                  className="flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-1.5 sm:py-2 rounded-lg bg-zinc-800/50 border border-zinc-700/50"
+                >
+                  <tech.icon className="h-3 w-3 sm:h-4 sm:w-4 text-emerald-500" />
+                  <span className="text-xs sm:text-sm text-zinc-300">{tech.name}</span>
+                </motion.div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+      </motion.div>
+
+      {/* Data Sources */}
+      <motion.div variants={itemVariants}>
+        <Card className="bg-gradient-to-b from-zinc-900 to-zinc-950 border-zinc-800/50">
+          <CardHeader className="pb-3 sm:pb-6">
+            <CardTitle className="text-lg sm:text-xl flex items-center gap-2">
+              <Database className="h-5 w-5 text-emerald-500" />
+              Data Sources
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+              <div className="p-3 sm:p-4 rounded-xl bg-zinc-800/50 border border-zinc-700/50">
+                <p className="font-medium text-sm sm:text-base text-white mb-1">EIA (Official)</p>
+                <p className="text-xs sm:text-sm text-zinc-500">U.S. Energy Information Administration</p>
+              </div>
+              <div className="p-3 sm:p-4 rounded-xl bg-zinc-800/50 border border-zinc-700/50">
+                <p className="font-medium text-sm sm:text-base text-white mb-1">Alpha Vantage</p>
+                <p className="text-xs sm:text-sm text-zinc-500">Real-time market data API</p>
+              </div>
+              <div className="p-3 sm:p-4 rounded-xl bg-zinc-800/50 border border-zinc-700/50">
+                <p className="font-medium text-sm sm:text-base text-white mb-1">Yahoo Finance</p>
+                <p className="text-xs sm:text-sm text-zinc-500">Financial data provider</p>
+              </div>
+              <div className="p-3 sm:p-4 rounded-xl bg-zinc-800/50 border border-zinc-700/50">
+                <p className="font-medium text-sm sm:text-base text-white mb-1">NewsAPI</p>
+                <p className="text-xs sm:text-sm text-zinc-500">News aggregation service</p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      </motion.div>
+
+      {/* About the Developer */}
+      <motion.div variants={itemVariants}>
+        <Card className="bg-gradient-to-br from-emerald-950/30 to-zinc-950 border-emerald-800/30">
+          <CardHeader className="pb-3 sm:pb-6">
+            <CardTitle className="text-lg sm:text-xl flex items-center gap-2">
+              <Sparkles className="h-5 w-5 text-emerald-500" />
+              About the Developer
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 sm:gap-6">
+              <motion.div
+                className="h-20 w-20 sm:h-24 sm:w-24 rounded-2xl bg-gradient-to-br from-emerald-400 to-emerald-600 flex items-center justify-center text-3xl sm:text-4xl font-bold text-white shadow-xl shadow-emerald-500/20 flex-shrink-0"
+                whileHover={{ scale: 1.05, rotate: 5 }}
+              >
+                K
+              </motion.div>
+              <div className="text-center sm:text-left">
+                <h3 className="text-xl sm:text-2xl font-bold text-white mb-2">Keshav Agarwal</h3>
+                <p className="text-sm sm:text-base text-zinc-400 mb-4 max-w-xl">
+                  A passionate full-stack developer with expertise in building modern web applications.
+                  Specializing in React, Next.js, Node.js, and AI integration, I love creating tools
+                  that make complex data accessible and actionable for everyone.
+                </p>
+                <p className="text-sm sm:text-base text-zinc-400 mb-4 max-w-xl">
+                  CrudeIntel was built to demonstrate how AI can transform financial data analysis,
+                  making sophisticated market insights available to anyone interested in understanding
+                  the oil market.
+                </p>
+                <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2 sm:gap-3">
+                  <Link
+                    href="https://github.com/KeshavDev15"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg bg-zinc-800 hover:bg-zinc-700 transition-colors text-xs sm:text-sm text-zinc-300"
+                  >
+                    <Github className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+                    GitHub
+                  </Link>
+                  <Link
+                    href="https://linkedin.com/in/keshavagarwal"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg bg-blue-600/20 hover:bg-blue-600/30 transition-colors text-xs sm:text-sm text-blue-400"
+                  >
+                    <Linkedin className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+                    LinkedIn
+                  </Link>
+                  <Link
+                    href="mailto:keshavagarwal.dev@gmail.com"
+                    className="flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg bg-emerald-600/20 hover:bg-emerald-600/30 transition-colors text-xs sm:text-sm text-emerald-400"
+                  >
+                    <Mail className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+                    Email
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      </motion.div>
+
+      {/* Project Links */}
+      <motion.div variants={itemVariants}>
+        <Card className="bg-gradient-to-b from-zinc-900 to-zinc-950 border-zinc-800/50">
+          <CardHeader className="pb-3 sm:pb-6">
+            <CardTitle className="text-lg sm:text-xl flex items-center gap-2">
+              <Globe className="h-5 w-5 text-emerald-500" />
+              Project Links
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
+              <Link
+                href="https://github.com/KeshavDev15/crudeintel"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 p-3 sm:p-4 rounded-xl bg-zinc-800/50 hover:bg-zinc-700/50 border border-zinc-700/50 transition-colors group"
+              >
+                <Github className="h-5 w-5 sm:h-6 sm:w-6 text-zinc-400 group-hover:text-white transition-colors" />
+                <div>
+                  <p className="font-medium text-sm sm:text-base text-white">Source Code</p>
+                  <p className="text-xs sm:text-sm text-zinc-500">View on GitHub</p>
+                </div>
+              </Link>
+              <Link
+                href="https://crudeintel-one.vercel.app"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 p-3 sm:p-4 rounded-xl bg-zinc-800/50 hover:bg-zinc-700/50 border border-zinc-700/50 transition-colors group"
+              >
+                <Globe className="h-5 w-5 sm:h-6 sm:w-6 text-zinc-400 group-hover:text-emerald-500 transition-colors" />
+                <div>
+                  <p className="font-medium text-sm sm:text-base text-white">Live Demo</p>
+                  <p className="text-xs sm:text-sm text-zinc-500">crudeintel-one.vercel.app</p>
+                </div>
+              </Link>
+              <Link
+                href="https://crudeintel-jfs9.onrender.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 p-3 sm:p-4 rounded-xl bg-zinc-800/50 hover:bg-zinc-700/50 border border-zinc-700/50 transition-colors group"
+              >
+                <Server className="h-5 w-5 sm:h-6 sm:w-6 text-zinc-400 group-hover:text-blue-500 transition-colors" />
+                <div>
+                  <p className="font-medium text-sm sm:text-base text-white">API Server</p>
+                  <p className="text-xs sm:text-sm text-zinc-500">Hosted on Render</p>
+                </div>
+              </Link>
+            </div>
+          </CardContent>
+        </Card>
+      </motion.div>
+
+      {/* Footer */}
+      <motion.div
+        className="text-center py-6 sm:py-8 border-t border-zinc-800/50"
+        variants={itemVariants}
+      >
+        <div className="flex items-center justify-center gap-2 mb-2">
+          <Droplets className="h-4 w-4 sm:h-5 sm:w-5 text-emerald-500" />
+          <span className="font-bold text-sm sm:text-base text-white">CrudeIntel</span>
+        </div>
+        <p className="text-xs sm:text-sm text-zinc-500">
+          Built with Next.js, NestJS, and Google Gemini AI
+        </p>
+        <p className="text-xs sm:text-sm text-zinc-600 mt-1">
+          &copy; {new Date().getFullYear()} Keshav Agarwal. All rights reserved.
+        </p>
+      </motion.div>
+    </motion.div>
+  );
+}

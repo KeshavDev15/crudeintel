@@ -88,12 +88,12 @@ export default function Dashboard() {
       {/* Header */}
       <motion.div
         ref={headerRef}
-        className="flex items-center justify-between"
+        className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-0"
         variants={itemVariants}
       >
         <div>
           <motion.h1
-            className="text-3xl font-bold bg-gradient-to-r from-white via-zinc-200 to-zinc-400 bg-clip-text text-transparent"
+            className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-white via-zinc-200 to-zinc-400 bg-clip-text text-transparent"
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
@@ -101,7 +101,7 @@ export default function Dashboard() {
             Dashboard
           </motion.h1>
           <motion.p
-            className="text-zinc-400"
+            className="text-sm sm:text-base text-zinc-400"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3 }}
@@ -110,7 +110,7 @@ export default function Dashboard() {
           </motion.p>
         </div>
         <motion.div
-          className="flex items-center gap-2 bg-zinc-900/50 px-4 py-2 rounded-full border border-zinc-800/50"
+          className="flex items-center gap-2 bg-zinc-900/50 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full border border-zinc-800/50"
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.4 }}
@@ -122,9 +122,9 @@ export default function Dashboard() {
             }}
             transition={{ duration: 2, repeat: Infinity }}
           >
-            <Activity className="h-4 w-4 text-emerald-500" />
+            <Activity className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-emerald-500" />
           </motion.div>
-          <span className="text-sm text-zinc-400">Live</span>
+          <span className="text-xs sm:text-sm text-zinc-400">Live</span>
         </motion.div>
       </motion.div>
 
@@ -143,23 +143,33 @@ export default function Dashboard() {
                 animate={{ x: ['0%', '100%'] }}
                 transition={{ duration: 3, repeat: Infinity, ease: 'linear' }}
               />
-              <CardContent className="flex items-center gap-4 py-4 relative z-10">
-                <motion.div
-                  animate={{ rotate: [0, 10, -10, 0] }}
-                  transition={{ duration: 0.5, repeat: Infinity, repeatDelay: 2 }}
-                >
-                  <AlertTriangle className="h-6 w-6 text-amber-500" />
-                </motion.div>
+              <CardContent className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4 py-4 relative z-10">
+                <div className="flex items-center gap-3">
+                  <motion.div
+                    animate={{ rotate: [0, 10, -10, 0] }}
+                    transition={{ duration: 0.5, repeat: Infinity, repeatDelay: 2 }}
+                  >
+                    <AlertTriangle className="h-5 w-5 sm:h-6 sm:w-6 text-amber-500" />
+                  </motion.div>
+                  <motion.div
+                    className="sm:hidden"
+                    animate={{ scale: [1, 1.1, 1] }}
+                    transition={{ duration: 1.5, repeat: Infinity }}
+                  >
+                    <Badge variant="bullish">Live</Badge>
+                  </motion.div>
+                </div>
                 <div className="flex-1">
-                  <p className="font-medium text-amber-400">
+                  <p className="font-medium text-sm sm:text-base text-amber-400">
                     High Spread Alert: {realtimeAlert.buyBenchmark} → {realtimeAlert.sellBenchmark}
                   </p>
-                  <p className="text-sm text-zinc-400">
-                    Spread: {realtimeAlert.spreadPercent.toFixed(2)}% | Potential profit: $
+                  <p className="text-xs sm:text-sm text-zinc-400">
+                    Spread: {realtimeAlert.spreadPercent.toFixed(2)}% | Profit: $
                     {realtimeAlert.netProfit.toFixed(2)}
                   </p>
                 </div>
                 <motion.div
+                  className="hidden sm:block"
                   animate={{ scale: [1, 1.1, 1] }}
                   transition={{ duration: 1.5, repeat: Infinity }}
                 >
@@ -173,7 +183,7 @@ export default function Dashboard() {
 
       {/* Price Cards Grid */}
       <motion.div
-        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4"
+        className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4"
         variants={containerVariants}
       >
         {prices?.map((price, index) => (
@@ -191,7 +201,7 @@ export default function Dashboard() {
 
       {/* Charts and Arbitrage Row */}
       <motion.div
-        className="grid grid-cols-1 lg:grid-cols-3 gap-6"
+        className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6"
         variants={itemVariants}
       >
         <motion.div
@@ -268,7 +278,7 @@ export default function Dashboard() {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
               {newsLoading ? (
                 <motion.div
                   className="flex items-center gap-2 text-zinc-500"

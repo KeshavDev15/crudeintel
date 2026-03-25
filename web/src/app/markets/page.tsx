@@ -37,14 +37,14 @@ export default function MarketsPage() {
   })) || [];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 sm:space-y-6">
       <div>
-        <h1 className="text-2xl font-bold text-white">Markets</h1>
-        <p className="text-zinc-400">Track crude oil benchmark prices in real-time</p>
+        <h1 className="text-xl sm:text-2xl font-bold text-white">Markets</h1>
+        <p className="text-sm sm:text-base text-zinc-400">Track crude oil benchmark prices in real-time</p>
       </div>
 
       {/* All Benchmarks */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
         {prices?.map((price) => (
           <BenchmarkCard key={price.benchmark} data={price} />
         ))}
@@ -52,31 +52,32 @@ export default function MarketsPage() {
 
       {/* Detailed View */}
       <Card>
-        <CardHeader>
-          <CardTitle>Price History</CardTitle>
+        <CardHeader className="pb-3 sm:pb-6">
+          <CardTitle className="text-base sm:text-lg">Price History</CardTitle>
         </CardHeader>
         <CardContent>
           <Tabs value={selectedBenchmark} onValueChange={setSelectedBenchmark}>
-            <TabsList>
+            <TabsList className="flex flex-wrap h-auto gap-1">
               {BENCHMARKS.map((b) => (
-                <TabsTrigger key={b} value={b}>
+                <TabsTrigger key={b} value={b} className="text-xs sm:text-sm px-2 sm:px-3 py-1.5">
                   {b}
                 </TabsTrigger>
               ))}
             </TabsList>
             {BENCHMARKS.map((b) => (
               <TabsContent key={b} value={b}>
-                <div className="h-[400px] mt-4">
+                <div className="h-[250px] sm:h-[400px] mt-3 sm:mt-4">
                   <ResponsiveContainer width="100%" height="100%">
                     <LineChart data={chartData}>
                       <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
-                      <XAxis dataKey="time" stroke="#9ca3af" fontSize={12} />
-                      <YAxis stroke="#9ca3af" fontSize={12} domain={['auto', 'auto']} />
+                      <XAxis dataKey="time" stroke="#9ca3af" fontSize={10} tick={{ fontSize: 10 }} />
+                      <YAxis stroke="#9ca3af" fontSize={10} tick={{ fontSize: 10 }} domain={['auto', 'auto']} width={45} />
                       <Tooltip
                         contentStyle={{
                           backgroundColor: '#18181b',
                           border: '1px solid #3f3f46',
                           borderRadius: '8px',
+                          fontSize: '12px',
                         }}
                         labelStyle={{ color: '#fff' }}
                       />
@@ -97,23 +98,23 @@ export default function MarketsPage() {
       </Card>
 
       {/* Market Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
         <Card>
-          <CardHeader>
-            <CardTitle>Market Summary</CardTitle>
+          <CardHeader className="pb-3 sm:pb-6">
+            <CardTitle className="text-base sm:text-lg">Market Summary</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="space-y-4">
+            <div className="space-y-3 sm:space-y-4">
               {prices?.map((price) => (
                 <div
                   key={price.benchmark}
-                  className="flex items-center justify-between py-2 border-b border-zinc-800 last:border-0"
+                  className="flex items-center justify-between py-1.5 sm:py-2 border-b border-zinc-800 last:border-0"
                 >
-                  <span className="font-medium text-zinc-300">{price.benchmark}</span>
-                  <div className="flex items-center gap-4">
-                    <span className="text-white">${price.price.toFixed(2)}</span>
+                  <span className="font-medium text-sm sm:text-base text-zinc-300">{price.benchmark}</span>
+                  <div className="flex items-center gap-2 sm:gap-4">
+                    <span className="text-sm sm:text-base text-white">${price.price.toFixed(2)}</span>
                     <span
-                      className={`text-sm ${
+                      className={`text-xs sm:text-sm ${
                         price.changePercent >= 0 ? 'text-emerald-400' : 'text-red-400'
                       }`}
                     >
@@ -128,18 +129,18 @@ export default function MarketsPage() {
         </Card>
 
         <Card>
-          <CardHeader>
-            <CardTitle>Data Sources</CardTitle>
+          <CardHeader className="pb-3 sm:pb-6">
+            <CardTitle className="text-base sm:text-lg">Data Sources</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="space-y-4">
+            <div className="space-y-3 sm:space-y-4">
               {prices?.map((price) => (
                 <div
                   key={price.benchmark}
-                  className="flex items-center justify-between py-2 border-b border-zinc-800 last:border-0"
+                  className="flex items-center justify-between py-1.5 sm:py-2 border-b border-zinc-800 last:border-0"
                 >
-                  <span className="font-medium text-zinc-300">{price.benchmark}</span>
-                  <span className="text-xs px-2 py-1 rounded bg-zinc-800 text-zinc-400">
+                  <span className="font-medium text-sm sm:text-base text-zinc-300">{price.benchmark}</span>
+                  <span className="text-[10px] sm:text-xs px-1.5 sm:px-2 py-0.5 sm:py-1 rounded bg-zinc-800 text-zinc-400">
                     {price.source}
                   </span>
                 </div>

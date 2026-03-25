@@ -36,11 +36,11 @@ export default function NewsPage() {
   const neutralCount = news?.filter((n) => n.sentiment === 'neutral').length || 0;
 
   return (
-    <div className="space-y-6">
-      <div className="flex items-center justify-between">
+    <div className="space-y-4 sm:space-y-6">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-0">
         <div>
-          <h1 className="text-2xl font-bold text-white">Market News</h1>
-          <p className="text-zinc-400">
+          <h1 className="text-xl sm:text-2xl font-bold text-white">Market News</h1>
+          <p className="text-sm sm:text-base text-zinc-400">
             AI-analyzed oil market news with sentiment scoring
           </p>
         </div>
@@ -49,51 +49,52 @@ export default function NewsPage() {
           disabled={isRefreshing}
           variant="outline"
           size="sm"
+          className="w-fit"
         >
-          <RefreshCw className={`h-4 w-4 mr-2 ${isRefreshing ? 'animate-spin' : ''}`} />
+          <RefreshCw className={`h-3.5 w-3.5 sm:h-4 sm:w-4 mr-2 ${isRefreshing ? 'animate-spin' : ''}`} />
           Refresh
         </Button>
       </div>
 
       {/* Sentiment Summary */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
         <Card>
-          <CardContent className="pt-6">
-            <div className="flex items-center gap-4">
-              <div className="p-3 rounded-lg bg-emerald-600/20">
-                <TrendingUp className="h-6 w-6 text-emerald-500" />
+          <CardContent className="pt-4 sm:pt-6">
+            <div className="flex items-center gap-3 sm:gap-4">
+              <div className="p-2.5 sm:p-3 rounded-lg bg-emerald-600/20">
+                <TrendingUp className="h-5 w-5 sm:h-6 sm:w-6 text-emerald-500" />
               </div>
               <div>
-                <p className="text-sm text-zinc-400">Bullish Articles</p>
-                <p className="text-2xl font-bold text-emerald-400">{bullishCount}</p>
+                <p className="text-xs sm:text-sm text-zinc-400">Bullish Articles</p>
+                <p className="text-xl sm:text-2xl font-bold text-emerald-400">{bullishCount}</p>
               </div>
             </div>
           </CardContent>
         </Card>
 
         <Card>
-          <CardContent className="pt-6">
-            <div className="flex items-center gap-4">
-              <div className="p-3 rounded-lg bg-red-600/20">
-                <TrendingDown className="h-6 w-6 text-red-500" />
+          <CardContent className="pt-4 sm:pt-6">
+            <div className="flex items-center gap-3 sm:gap-4">
+              <div className="p-2.5 sm:p-3 rounded-lg bg-red-600/20">
+                <TrendingDown className="h-5 w-5 sm:h-6 sm:w-6 text-red-500" />
               </div>
               <div>
-                <p className="text-sm text-zinc-400">Bearish Articles</p>
-                <p className="text-2xl font-bold text-red-400">{bearishCount}</p>
+                <p className="text-xs sm:text-sm text-zinc-400">Bearish Articles</p>
+                <p className="text-xl sm:text-2xl font-bold text-red-400">{bearishCount}</p>
               </div>
             </div>
           </CardContent>
         </Card>
 
-        <Card>
-          <CardContent className="pt-6">
-            <div className="flex items-center gap-4">
-              <div className="p-3 rounded-lg bg-zinc-600/20">
-                <Minus className="h-6 w-6 text-zinc-500" />
+        <Card className="sm:col-span-2 md:col-span-1">
+          <CardContent className="pt-4 sm:pt-6">
+            <div className="flex items-center gap-3 sm:gap-4">
+              <div className="p-2.5 sm:p-3 rounded-lg bg-zinc-600/20">
+                <Minus className="h-5 w-5 sm:h-6 sm:w-6 text-zinc-500" />
               </div>
               <div>
-                <p className="text-sm text-zinc-400">Neutral Articles</p>
-                <p className="text-2xl font-bold text-zinc-400">{neutralCount}</p>
+                <p className="text-xs sm:text-sm text-zinc-400">Neutral Articles</p>
+                <p className="text-xl sm:text-2xl font-bold text-zinc-400">{neutralCount}</p>
               </div>
             </div>
           </CardContent>
@@ -102,15 +103,15 @@ export default function NewsPage() {
 
       {/* Overall Sentiment */}
       <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <Newspaper className="h-5 w-5 text-emerald-500" />
+        <CardHeader className="pb-3 sm:pb-6">
+          <CardTitle className="flex items-center gap-2 text-base sm:text-lg">
+            <Newspaper className="h-4 w-4 sm:h-5 sm:w-5 text-emerald-500" />
             Market Sentiment
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="flex items-center gap-4">
-            <div className="flex-1 h-4 rounded-full bg-zinc-800 overflow-hidden">
+          <div className="flex items-center gap-3 sm:gap-4">
+            <div className="flex-1 h-3 sm:h-4 rounded-full bg-zinc-800 overflow-hidden">
               <div className="h-full flex">
                 <div
                   className="h-full bg-emerald-500"
@@ -153,18 +154,18 @@ export default function NewsPage() {
 
       {/* News Grid */}
       <Card>
-        <CardHeader>
-          <CardTitle>Latest Articles</CardTitle>
+        <CardHeader className="pb-3 sm:pb-6">
+          <CardTitle className="text-base sm:text-lg">Latest Articles</CardTitle>
         </CardHeader>
         <CardContent>
           {news && news.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
               {news.map((item) => (
                 <NewsCard key={item.id} news={item} />
               ))}
             </div>
           ) : (
-            <div className="text-center py-8 text-zinc-500">
+            <div className="text-center py-6 sm:py-8 text-sm sm:text-base text-zinc-500">
               No news articles available
             </div>
           )}
