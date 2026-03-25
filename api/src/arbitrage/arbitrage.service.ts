@@ -34,7 +34,7 @@ export class ArbitrageService {
 
         const spread = sell.price - buy.price;
         const spreadPercent = (spread / buy.price) * 100;
-        const estimatedProfit = spread - TRANSACTION_COST_PER_BARREL;
+        const netProfit = spread - TRANSACTION_COST_PER_BARREL;
         const isViable = spread >= MIN_ARBITRAGE_SPREAD;
 
         opportunities.push({
@@ -45,7 +45,7 @@ export class ArbitrageService {
           sellPrice: sell.price,
           spread: parseFloat(spread.toFixed(2)),
           spreadPercent: parseFloat(spreadPercent.toFixed(2)),
-          estimatedProfit: parseFloat(estimatedProfit.toFixed(2)),
+          netProfit: parseFloat(netProfit.toFixed(2)),
           isViable,
           detectedAt: new Date(),
         });

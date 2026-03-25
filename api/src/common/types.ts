@@ -20,7 +20,7 @@ export interface ArbitrageOpportunity {
   sellPrice: number;
   spread: number;
   spreadPercent: number;
-  estimatedProfit: number;
+  netProfit: number;
   isViable: boolean;
   detectedAt: Date;
 }
